@@ -41,7 +41,6 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.MyViewHold
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         return new MyViewHolder(LayoutInflater.from(context)
                 .inflate(R.layout.card_view_main, parent, false));
     }
@@ -51,13 +50,11 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.MyViewHold
 
         if (getItemCount()==0){
             Toast.makeText(context, "nope", Toast.LENGTH_SHORT).show();
-
         }
         else {
             holder.txtTrash.setText(String.valueOf(trashList.get(position).getTrashName()));
             holder.txtTrashQty.setText(String.valueOf(trashList.get(position).getTrashQty()));
             Picasso.with(context).load(trashList.get(position).getTrashImg()).resize(150,150).into(holder.btnTrash);
-
 
             holder.btnTrash.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,7 +86,6 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.MyViewHold
             txtTrash = (TextView) itemView.findViewById(R.id.txtTrash);
             txtTrashQty = (TextView) itemView.findViewById(R.id.txtTrashQty);
             btnTrash = (ImageButton) itemView.findViewById(R.id.btnTrash);
-
         }
     }
 }

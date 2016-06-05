@@ -22,10 +22,12 @@ public class SubmitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_submit);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         textView1 = (TextView) findViewById(R.id.textView1);
         Intent i = getIntent();
         trashes = i.getParcelableArrayListExtra("trashList");
         textView1.setText(trashes.get(1).getTrashName());
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

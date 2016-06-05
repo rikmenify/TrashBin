@@ -37,7 +37,6 @@ public class Trash implements Parcelable {
     };
 
     public String getTrashName() {
-
         return trashName;
     }
 

@@ -1,43 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.rikirikmen.trashbin.MainActivity"
-    tools:showIn="@layout/activity_main"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="81dp">
-
-
-    <Button
-        android:text="Button"
-        android:layout_width="376dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnProcced"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="519dp"
-        app:layout_constraintLeft_toLeftOf="@+id/content_main"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        tools:layout_constraintLeft_creator="0"
-        app:layout_constraintRight_toRightOf="@+id/content_main"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp"
-        tools:layout_constraintRight_creator="0"
-        app:layout_constraintBottom_toBottomOf="@+id/content_main"
-        tools:layout_constraintBottom_creator="0" />
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <android.support.v7.widget.RecyclerView
-        android:paddingTop="10dp"
         android:id="@+id/recycler_view_trash"
-        android:layout_width="364dp"
+        android:layout_width="fill_parent"
         android:layout_height="505dp"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="6dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnProcced"
-        android:layout_marginBottom="8dp"
-        tools:layout_constraintBottom_creator="0" />
-</android.support.constraint.ConstraintLayout>
+        android:paddingTop="10dp"
+        android:layout_above="@+id/btnProcced"
+        android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/btnProcced"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

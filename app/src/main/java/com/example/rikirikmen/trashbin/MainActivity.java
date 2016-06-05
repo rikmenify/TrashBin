@@ -1,11 +1,6 @@
 package com.example.rikirikmen.trashbin;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,17 +22,21 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Button btnProceed;
     private List<Trash> trashes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_trash);
         btnProceed = (Button) findViewById(R.id.btnProcced);
         trashList = new ArrayList<>();
         adapter = new ButtonAdapter(this, trashList);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this,3);
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
         prepareImg();
@@ -45,15 +44,14 @@ public class MainActivity extends AppCompatActivity {
         btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trashes.addAll(adapter.getList());
-                Toast.makeText(MainActivity.this, ""+ String.valueOf(trashes.get(0).getTrashQty()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "" + adapter.getList().get(0).getTrashQty(), Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
-    public void prepareImg(){
-         int[] buttonImage = new int[]{
+    public void prepareImg() {
+        int[] buttonImage = new int[]{
                 R.drawable.apple, R.drawable.asparagus,
                 R.drawable.aubergine, R.drawable.avocado,
                 R.drawable.baguette, R.drawable.bacon,
@@ -66,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
         Trash trash = new Trash("Example 1", 0, buttonImage[0]);
         trashList.add(trash);
 
-        for (int i = 1; i<buttonImage.length;i++){
-            int a = i+1;
-            trash = new Trash("Example"+ a, 0, buttonImage[i]);
+        for (int i = 1; i < buttonImage.length; i++) {
+            int a = i + 1;
+            trash = new Trash("Example" + a, 0, buttonImage[i]);
             trashList.add(trash);
         }
 
