@@ -161,8 +161,8 @@ public class ActivityMain extends AppCompatActivity {
         int width = dm.widthPixels;
 
         expListView.setIndicatorBounds(
-                width - getDipsFromPixel(60),
-                width - getDipsFromPixel(30));
+                width - getDipsFromPixel(30),
+                width - getDipsFromPixel(10));
     }
 
     // Convert pixel to dip

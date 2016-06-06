@@ -1,10 +1,13 @@
 package com.example.rikirikmen.trashbin;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,9 +53,13 @@ public class AdapterButton extends RecyclerView.Adapter<AdapterButton.MyViewHold
             holder.txtTrashQty.setText(String.valueOf(trashList.get(position).getTrashQty()));
             Picasso.with(context).load(trashList.get(position).getTrashImg()).resize(150,150).into(holder.btnTrash);
 
+            final Animation animVibrate = AnimationUtils.loadAnimation(context, R.anim.anim_vibrate);
+            holder.cardView.setAnimation(animVibrate); // apply custom vibrate animation
+
             holder.btnTrash.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    v.startAnimation(animVibrate); // START Animation
                     int a = trashList.get(position).getTrashQty();
                     a++;
                     trashList.get(position).setTrashQty(a);
@@ -76,11 +83,13 @@ public class AdapterButton extends RecyclerView.Adapter<AdapterButton.MyViewHold
         public TextView txtTrash;
         public TextView txtTrashQty;
         public ImageButton btnTrash;
+        public CardView cardView;
         public MyViewHolder(View itemView) {
             super(itemView);
             txtTrash = (TextView) itemView.findViewById(R.id.txtTrash);
             txtTrashQty = (TextView) itemView.findViewById(R.id.txtTrashQty);
             btnTrash = (ImageButton) itemView.findViewById(R.id.btnTrash);
+            cardView = (CardView) itemView.findViewById(R.id.card_view);
         }
     }
 
