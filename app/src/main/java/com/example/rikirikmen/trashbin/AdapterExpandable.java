@@ -8,15 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import parceable.Trash;
 
 /**
  * Created by Thomas on 6/5/2016.
@@ -24,11 +22,11 @@ import java.util.Map;
 public class AdapterExpandable extends BaseExpandableListAdapter {
 
     private Activity context;
-    private Map<String, List<String>> itemCollections;
+    private Map<String, List<Trash>> itemCollections;
     private List<String> items;
 
     public AdapterExpandable(Activity context, List<String> items,
-                             Map<String, List<String>> itemCollections) {
+                             Map<String, List<Trash>> itemCollections) {
         this.context = context;
         this.itemCollections = itemCollections;
         this.items = items;
@@ -41,7 +39,7 @@ public class AdapterExpandable extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return itemCollections.get(items.get(groupPosition)).size();
+        return 1;
     }
 
     @Override
@@ -75,7 +73,7 @@ public class AdapterExpandable extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.group_item, null);
+            convertView = infalInflater.inflate(R.layout.expandable_group, null);
         }
         TextView item = (TextView) convertView.findViewById(R.id.groupItem);
         item.setTypeface(null, Typeface.BOLD);
@@ -85,51 +83,20 @@ public class AdapterExpandable extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-//        final List<String> item = (List<String>) getChild(groupPosition, childPosition);
-//        LayoutInflater inflater = context.getLayoutInflater();
-//
-//        if (convertView == null) {
-//            convertView = inflater.inflate(R.layout.child_item, null);
-//        }
-//
-//        GridView gridItemView = (GridView) convertView.findViewById(R.id.gridView);
-//        gridItemView.setAdapter(new ArrayAdapter<String>(this.context, android.R.layout.simple_list_item_1, item));
-//        return convertView;
-
+        final List<Trash> trashList = (List<Trash>) getChild(groupPosition, childPosition);
         RecyclerView recyclerView;
         LayoutInflater inflater = context.getLayoutInflater();
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.child_item, null);
-        }
 
-        recyclerView = (RecyclerView) convertView.findViewById(R.id.recycler_view_trash);
-        List<Trash> trashList = new ArrayList<>();
-        ButtonAdapter adapter = new ButtonAdapter(this.context, trashList);
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.expandable_child, null);
+        }
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.context, 3);
+        AdapterButton adapter = new AdapterButton(this.context, trashList, getGroup(groupPosition));
+
+        recyclerView = (RecyclerView) convertView.findViewById(R.id.recycler_view_trash);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(adapter);
-
-        int[] buttonImage = new int[]{
-                R.drawable.apple, R.drawable.asparagus,
-                R.drawable.aubergine, R.drawable.avocado,
-                R.drawable.baguette, R.drawable.bacon,
-                R.drawable.banana, R.drawable.beans,
-                R.drawable.blueberries, R.drawable.biscuit,
-                R.drawable.boiled, R.drawable.bowl,
-                R.drawable.bread, R.drawable.butcher,
-                R.drawable.cabbage
-        };
-        Trash trash = new Trash("Example 1", 0, buttonImage[0]);
-        trashList.add(trash);
-
-        for (int i = 1; i < buttonImage.length; i++) {
-            int a = i + 1;
-            trash = new Trash("Example" + a, 0, buttonImage[i]);
-            trashList.add(trash);
-        }
-
-        adapter.notifyDataSetChanged();
 
         return convertView;
     }

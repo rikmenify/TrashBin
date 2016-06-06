@@ -1,40 +1,35 @@
 package com.example.rikirikmen.trashbin;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.util.List;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.util.Map;
+
+import parceable.Trash;
 
 /**
  * Created by Riki Rikmen on 6/4/2016.
  */
 
-public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.MyViewHolder>{
+public class AdapterButton extends RecyclerView.Adapter<AdapterButton.MyViewHolder>{
     private Context context;
     private List<Trash> trashList;
     private LayoutInflater inflater;
-    public ButtonAdapter(Context c, List<Trash> t) {
+    private Object indexGroup;
+
+    public AdapterButton(Context c, List<Trash> t, Object indexGroup) {
         this.context = c;
         this.trashList = t;
+        this.indexGroup = indexGroup;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -42,12 +37,11 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.card_view_main, parent, false));
+                .inflate(R.layout.cardview_main, parent, false));
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-
         if (getItemCount()==0){
             Toast.makeText(context, "nope", Toast.LENGTH_SHORT).show();
         }
@@ -62,16 +56,17 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.MyViewHold
                     int a = trashList.get(position).getTrashQty();
                     a++;
                     trashList.get(position).setTrashQty(a);
+
+                    Map<String, List<Trash>> itemCollections = Singleton.getInstance().getItemCollections();
+                    itemCollections.put(indexGroup.toString(), trashList);
+                    Singleton.getInstance().setItemCollections(itemCollections);
+
                     notifyDataSetChanged();
                 }
             });
-
         }
     }
 
-    public List<Trash> getList(){
-        return trashList;
-    }
     @Override
     public int getItemCount() {
         return trashList.size();
@@ -88,4 +83,5 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.MyViewHold
             btnTrash = (ImageButton) itemView.findViewById(R.id.btnTrash);
         }
     }
+
 }

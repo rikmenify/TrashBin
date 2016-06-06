@@ -1,4 +1,4 @@
-package com.example.rikirikmen.trashbin;
+package parceable;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,6 +8,17 @@ import android.os.Parcelable;
  */
 
 public class Trash implements Parcelable {
+    public static final Creator<Trash> CREATOR = new Creator<Trash>() {
+        @Override
+        public Trash createFromParcel(Parcel in) {
+            return new Trash(in);
+        }
+
+        @Override
+        public Trash[] newArray(int size) {
+            return new Trash[size];
+        }
+    };
     private String trashName;
     private int trashQty;
     private int trashImg;
@@ -23,18 +34,6 @@ public class Trash implements Parcelable {
         trashQty = in.readInt();
         trashImg = in.readInt();
     }
-
-    public static final Creator<Trash> CREATOR = new Creator<Trash>() {
-        @Override
-        public Trash createFromParcel(Parcel in) {
-            return new Trash(in);
-        }
-
-        @Override
-        public Trash[] newArray(int size) {
-            return new Trash[size];
-        }
-    };
 
     public String getTrashName() {
         return trashName;

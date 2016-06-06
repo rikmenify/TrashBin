@@ -8,8 +8,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".SampleExpand"
+            android:name=".ActivityMain"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -18,16 +19,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".SubmitActivity"
+            android:name=".ActivitySubmit"
             android:label="@string/title_activity_submit"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ActivityMain"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.rikirikmen.trashbin.MainActivity" />
+                android:value=".ActivityMain" />
         </activity>
-        <activity android:name=".MainActivity"></activity>
+
     </application>
 
 </manifest>
