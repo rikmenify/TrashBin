@@ -12,19 +12,11 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
+        card_view:cardPreventCornerOverlap="false"
         card_view:cardBackgroundColor="@android:color/transparent"
         card_view:cardCornerRadius="3dp"
-        card_view:cardElevation="4dp"
+        card_view:cardElevation="0dp"
         card_view:contentPadding="0dp">
-
-        <ImageButton
-            android:id="@+id/btnTrash"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@+id/btnTrash"
-            android:layout_centerHorizontal="true"
-            android:background="@android:color/white"
-            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/txtTrashQty"
@@ -44,6 +36,15 @@
             android:layout_gravity="center"
             android:layout_marginTop="35dp"
             android:text="Trash Name"
+            android:textAlignment="center" />
+
+        <ImageButton
+            android:id="@+id/btnTrash"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/btnTrash"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/roundbtn"
             android:textAlignment="center" />
 
     </android.support.v7.widget.CardView>

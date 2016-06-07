@@ -1,4 +1,4 @@
-package com.example.rikirikmen.trashbin;
+package com.example.rikirikmen.trashbin.Singleton;
 
 import java.util.List;
 import java.util.Map;

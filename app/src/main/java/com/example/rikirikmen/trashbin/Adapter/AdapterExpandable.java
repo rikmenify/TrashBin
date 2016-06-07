@@ -1,4 +1,4 @@
-package com.example.rikirikmen.trashbin;
+package com.example.rikirikmen.trashbin.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import com.example.rikirikmen.trashbin.R;
 
 import java.util.List;
 import java.util.Map;

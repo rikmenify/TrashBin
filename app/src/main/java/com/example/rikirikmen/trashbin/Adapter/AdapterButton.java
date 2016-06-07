@@ -1,4 +1,4 @@
-package com.example.rikirikmen.trashbin;
+package com.example.rikirikmen.trashbin.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.rikirikmen.trashbin.R;
+import com.example.rikirikmen.trashbin.Singleton.Singleton;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -53,12 +55,12 @@ public class AdapterButton extends RecyclerView.Adapter<AdapterButton.MyViewHold
             holder.txtTrashQty.setText(String.valueOf(trashList.get(position).getTrashQty()));
             Picasso.with(context).load(trashList.get(position).getTrashImg()).resize(150,150).into(holder.btnTrash);
 
-            final Animation animVibrate = AnimationUtils.loadAnimation(context, R.anim.anim_vibrate);
-            holder.cardView.setAnimation(animVibrate); // apply custom vibrate animation
-
+             // apply custom vibrate animation
             holder.btnTrash.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final Animation animVibrate = AnimationUtils.loadAnimation(context, R.anim.anim_vibrate);
+                    holder.cardView.setAnimation(animVibrate);
                     v.startAnimation(animVibrate); // START Animation
                     int a = trashList.get(position).getTrashQty();
                     a++;

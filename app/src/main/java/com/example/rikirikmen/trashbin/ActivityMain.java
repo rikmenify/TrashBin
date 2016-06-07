@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
+import com.example.rikirikmen.trashbin.Adapter.AdapterExpandable;
+import com.example.rikirikmen.trashbin.Singleton.Singleton;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -50,10 +53,6 @@ public class ActivityMain extends AppCompatActivity {
         expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-                if (lastExpandPosition != -1
-                        && groupPosition != lastExpandPosition) {
-                    expListView.collapseGroup(lastExpandPosition);
-                }
                 lastExpandPosition = groupPosition;
             }
         });
